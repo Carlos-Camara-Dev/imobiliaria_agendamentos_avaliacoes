@@ -1,0 +1,34 @@
+# Compilador a ser utilizado
+CXX = g++
+# ------------------------------------
+# Flags de compilação: C++11, todos os warnings e modo pedantic
+CXXFLAGS = -std=c++11 -Wall -Wextra -pedantic -O2
+# ------------------------------------
+# Arquivos de código-fonte (.cpp) do projeto
+# Adicione novos arquivos .cpp a esta lista
+SRCS = main.cpp corretor.cpp cliente.cpp imovel.cpp agendamento.cpp utils.cpp
+#------------------------------------
+# Executável final - Nome
+TARGET = imobiliaria
+# ------------------------------------
+# Regras:
+#------------------------------------
+# Principal - compila o programa:
+all: $(TARGET)
+# -----------------------------------
+# Criar o executável
+# Compila e linca todos os arquivos de código-fonte
+$(TARGET): $(SRCS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRCS)
+# ------------------------------------
+# Limpar os arquivos gerados pela compilação
+clean:
+	rm -f $(TARGET)
+# ------------------------------------
+# Cmpilar e executar com um arquivo de teste (exemplo)
+# Uso: make run arquivo_compilacao=arquivo_entrada.txt
+run: all
+	./$(TARGET) < $(arquivo_compilacao)
+
+.PHONY: all clean run
+# ------------------------------------
